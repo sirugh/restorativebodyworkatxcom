@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import Logo from "~/components/Logo.astro";
 import ToggleTheme from "~/components/common/ToggleTheme.astro";
 import ToggleMenu from "~/components/common/ToggleMenu.astro";
 import Button from "~/components/ui/Button.astro"
@@ -59,7 +58,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
 >
   <div
     class:list={[
-      "text-default py-3 px-3 md:px-6 mx-auto w-full md:flex md:justify-between",
+      "text-default py-3 px-3 pr-0 md:px-6 mx-auto w-full md:flex md:justify-between",
       {
         "max-w-7xl": !isFullWidth,
       },
