@@ -6,6 +6,7 @@ import Footer from '~/components/widgets/Footer.astro';
 import { headerData, footerData } from '~/data';
 
 import type { MetaData } from '~/types';
+import Main from '~/components/widgets/Main.astro';
 
 export interface Props {
   metadata?: MetaData;
@@ -15,12 +16,15 @@ const { metadata } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
+
+
+  <Main image={{ src: '~/assets/images/logo/ResBodWork-logo-color.png', alt: 'Restorative Bodywork Logo' }} />
+  <slot name="header">
+    <Header {...headerData} />
+  </slot>
   <main>
     <slot />
   </main>
-  <!-- <slot name="header">
-    <Header {...headerData} />
-  </slot> -->
   <slot name="footer">
     <Footer {...footerData} />
   </slot>

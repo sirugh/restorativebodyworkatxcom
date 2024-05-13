@@ -2,8 +2,8 @@ import { getAsset, getPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
+    { text: 'Home', href: getPermalink('/#') },
     { text: 'Book Now', href: 'https://my-business-restorativebodyworkatx.square.site/', target: '_blank' },
-    // { text: 'Home', href: getPermalink('/#') },
     { text: 'Services', href: getPermalink('/services') },
     { text: 'About', href: getPermalink('/about') },
     { text: 'FAQ', href: getPermalink('/#faq') },
