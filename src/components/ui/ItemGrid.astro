@@ -4,7 +4,7 @@ import type { ItemGrid } from '~/types';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
 
-const { items = [], columns, defaultIcon = '', classes = {} } = Astro.props as ItemGrid;
+const { items = [], columns, defaultIcon = '', activeIcon = '', classes = {} } = Astro.props as ItemGrid;
 
 const {
   container: containerClass = '',
@@ -15,7 +15,6 @@ const {
   action: actionClass = '',
 } = classes;
 ---
-
 {
   items && (
     <div
@@ -24,48 +23,101 @@ const {
           columns === 4
             ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
             : columns === 3
-            ? 'lg:grid-cols-3 sm:grid-cols-2'
-            : columns === 2
-            ? 'sm:grid-cols-2 '
-            : ''
+              ? 'lg:grid-cols-3 sm:grid-cols-2'
+              : columns === 2
+                ? 'sm:grid-cols-2 '
+                : ''
         }`,
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
-        <div>
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
-            <div class="flex justify-center">
-              {(icon || defaultIcon) && (
-                <Icon
-                  name={icon || defaultIcon}
-                  class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass, itemClasses?.icon)}
-                />
-              )}
-            </div>
-            <div class="mt-0.5">
-              {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
-              {description && (
-                <p
-                  class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
-                  set:html={description}
-                />
-              )}
-              {callToAction && (
-                <div
-                  class={twMerge(
-                    `${title || description ? 'mt-3' : ''}`,
-                    actionClass,
-                    itemClasses?.actionClass
-                  )}
-                >
-                  <Button variant="link" {...callToAction} />
-                </div>
-              )}
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => {
+        return (
+          <div>
+            <div data-faq-toggle class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
+              <div class="flex justify-center icon">
+                {(icon || defaultIcon) && (
+                  <Icon
+                    name={icon || defaultIcon}
+                    class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass, itemClasses?.icon)}
+                  />
+                )}
+                {(icon || activeIcon) && (
+                  <Icon
+                    name={icon || activeIcon}
+                    class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2 hidden', defaultIconClass, itemClasses?.icon)}
+                  />
+                )}
+              </div>
+              <div class="mt-0.5 border-b-2">
+                {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
+                {description && (
+                  <p
+                    class={twMerge(
+                      `${title ? 'mt-3' : ''} text-muted overflow-hidden description mb-2`,
+                      descriptionClass,
+                      itemClasses?.description
+                    )}
+                    set:html={description}
+                  />
+                )}
+                {callToAction && (
+                  <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
+                    <Button variant="link" {...callToAction} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   )
 }
+
+<script>
+  function attachEvent(selector, event, fn) {
+    const matches = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
+    if (matches && matches.length) {
+      matches.forEach((elem) => {
+        elem.addEventListener(event, (e) => fn(e, elem), false);
+      });
+    }
+  }
+
+  let elems = document.querySelectorAll('[data-faq-toggle]');
+
+  elems.forEach((elem) => {
+    const icon = elem?.querySelector('.icon');
+    const description = elem?.querySelector('.description');
+    icon?.classList.add('max-h-0');
+    icon?.classList.remove('max-h-full');
+    description?.classList.add('max-h-0');
+    description?.classList.remove('max-h-full');
+  });
+
+  attachEvent('[data-faq-toggle]', 'click', function (_, elem) {
+    elem.classList.toggle('expanded');
+
+    let isExpanded = elem.classList.contains('expanded');
+    const icon = elem.querySelector('.icon');
+    const description = elem.querySelector('.description');
+
+    if (isExpanded) {
+      icon?.classList.add('max-h-full');
+      icon?.classList.remove('max-h-0');
+      description?.classList.remove('max-h-0');
+      description?.classList.add('max-h-full');
+    } else {
+      icon?.classList.add('max-h-0');
+      icon?.classList.remove('max-h-full');
+      description?.classList.add('max-h-0');
+      description?.classList.remove('max-h-full');
+    }
+
+    // flip icon
+    Array.from(icon.children).forEach((child) => {
+      child.classList.toggle('hidden');
+    })
+  });
+</script>

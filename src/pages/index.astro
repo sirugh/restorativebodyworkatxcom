@@ -1,18 +1,15 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-
 import Hero from '~/components/widgets/Hero.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import { faqData } from '~/data';
+import Layout from '~/layouts/PageLayout.astro';
+import Image from '~/components/common/Image.astro';
 const metadata = {
   title: 'Restorative Bodywork',
   ignoreTitleTemplate: true,
 };
+
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
   <Hero
     actions={[
       {
@@ -21,39 +18,96 @@ const metadata = {
         href: 'https://my-business-restorativebodyworkatx.square.site/',
         icon: 'tabler:calendar-plus',
       },
-      { text: 'Our services', href: '/services', class: 'lg:hidden flex w-full'},
-      { text: 'Contact Information & Location', href: '/contact', class: 'lg:hidden flex w-full' },
+      // { text: 'Our services', href: '/services', class: 'lg:hidden flex w-full' },
+      // { text: 'Contact Information & Location', href: '/contact', class: 'lg:hidden flex w-full' },
     ]}
     image={{ src: '~/assets/images/closeups/hands-back1.jpeg', alt: 'Restorative Bodywork Hero' }}
-  >
-    <Fragment slot="title">Restorative Bodywork</Fragment>
-
-    <Fragment slot="subtitle">
-      <span class="sm:inline text-black">
-        Revitalize your well-being with <span class="font-semibold">Restorative Bodywork</span> - located at <span class="font-semibold">
-          <a href="https://www.google.com/maps?q=2111+Dickson+Drive+%2314,+Austin,+TX+78704"
-            >2111 Dicken Drive #14, Austin, TX 78704</a
-          ></span
-        > in South Austin. Where tranquility meets
-        therapeutic excellence.<span class="block mb-1 text-black text-sm"
-        > By appointment only.</span
-      >
-      </span>
-    </Fragment>
-  </Hero>
-
-  <!-- Note Widget ******************* -->
-
-  <!-- <Note /> -->
-
-  <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    id="faq"
-    title="Frequently Asked Questions"
-    subtitle="Questions about your therapeutic experience? Find answers here. If you don't see what you're looking for, please do not hesitate to contact us."
-    tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
-    items={[...faqData]}
   />
+  <div class="w-full p-4">
+    <h2 class="text-2xl font-semibold text-center">Our Rates</h2>
+    <div class="flex flex-col md:flex-row justify-center">
+      <!-- Card 1 -->
+      <a
+        href="https://my-business-restorativebodyworkatx.square.site/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
+      >
+        <div class="block text-sm font-bold text-left">
+          Duration:
+          <span class="text-xs md:text-sm">60 minutes</span>
+        </div>
+        <span class="block text-sm font-bold text-left">Cost: $100</span>
+      </a>
+
+      <!-- Card 2 -->
+      <a
+        href="https://my-business-restorativebodyworkatx.square.site/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
+      >
+        <div class="block text-sm font-bold text-left">
+          Duration:
+          <span class="text-xs md:text-sm">75 minutes</span>
+        </div>
+        <span class="block text-sm font-bold text-left">Cost: $125</span>
+      </a>
+
+      <!-- Card 3 -->
+      <a
+        href="https://my-business-restorativebodyworkatx.square.site/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
+      >
+        <div class="block text-sm font-bold text-left">
+          Duration:
+          <span class="text-xs md:text-sm">90 minutes</span>
+        </div>
+        <span class="block text-sm font-bold text-left">Cost: $150</span>
+      </a>
+    </div>
+  </div>
+  <!-- Info section -->
+  <div class="w-full p-4">
+    <h2 class="text-2xl font-semibold text-center">Contact Us</h2>
+    <div class="flex flex-col md:flex-row justify-center">
+      <!-- Card 2 -->
+      <a href="/about" class="space-x-0.5 m-1 md:m-6 p-6 text-center">
+        <div class="mb-5 text-xl font-[cursive]">Hi, I'm Rose!</div>
+        <div
+          class="overflow-hidden rounded-full shadow-lg hover:shadow-inner hover:opacity-80 hover:bg-[#3d785c] transition-all"
+        >
+          <div class="w-full h-full object-cover">
+            <Image src="~/assets/images/rose_headshot.jpeg" alt="Rose" />
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a
+        href="/contact"
+        class="w-full h-fit self-center bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
+      >
+        <div class="block text-sm text-left">
+          <span class="font-bold">Contact Info</span>
+          <div>phone: (512) 920-3103</div>
+          <div>email: info@restorativebodyworkatx.com</div>
+          <div>address: 2111 Dickson Dr #14, Austin, TX 78704</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- Map Widget ******************* -->
+  <div class="w-full p-4">
+    <iframe
+      style="width:100%"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3446.699230326372!2d-97.78387882394603!3d30.245652409008724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xab64db1f9f463763%3A0xc669fa7e156b773a!2sRestorative%20Bodywork!5e0!3m2!1sen!2sus!4v1715558773560!5m2!1sen!2sus"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
 </Layout>

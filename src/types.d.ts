@@ -187,6 +187,7 @@ export interface ItemGrid {
   items?: Array<Item>;
   columns?: number;
   defaultIcon?: string;
+  activeIcon?: string;
   classes?: Record<string, string>;
 }
 

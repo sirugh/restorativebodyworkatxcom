@@ -1,0 +1,22 @@
+---
+import FAQs from '~/components/widgets/FAQs.astro';
+import { faqData } from '~/data';
+import Layout from '~/layouts/PageLayout.astro';
+
+
+const metadata = {
+  title: 'FAQ',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- FAQs Widget ******************* -->
+  <FAQs
+    id="faq"
+    title="Frequently Asked Questions"
+    subtitle="Questions about your therapeutic experience? Find answers here. If you don't see what you're looking for, please do not hesitate to contact us."
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[...faqData]}
+  />
+</Layout>
