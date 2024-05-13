@@ -18,7 +18,8 @@ const { metadata } = Astro.props;
 <Layout metadata={metadata}>
   <Main image={{ src: '~/assets/images/logo/ResBodWork-logo-color.png', alt: 'Restorative Bodywork Logo' }} />
   <slot name="header">
-    <Header {...headerData} />
+    <Header {...headerData}
+    isFullWidth/>
   </slot>
   <main>
     <slot />

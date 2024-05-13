@@ -1,7 +1,5 @@
 ---
-import FAQs from '~/components/widgets/FAQs.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import { faqData } from '~/data';
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
 const metadata = {
@@ -26,7 +24,7 @@ const metadata = {
     image={{ src: '~/assets/images/closeups/hands-back1.jpeg', alt: 'Restorative Bodywork Hero' }}
   />
   <div class="w-full p-4">
-    <h2 class="text-2xl font-semibold m-4 text-center">Our Rates</h2>
+    <h2 class="text-2xl font-semibold text-center">Our Rates</h2>
     <div class="flex flex-col md:flex-row justify-center">
       <!-- Card 1 -->
       <a
@@ -73,7 +71,7 @@ const metadata = {
   </div>
   <!-- Info section -->
   <div class="w-full p-4">
-    <h2 class="text-2xl font-semibold m-4 text-center">Contact Us</h2>
+    <h2 class="text-2xl font-semibold text-center">Contact Us</h2>
     <div class="flex flex-col md:flex-row justify-center">
       <!-- Card 2 -->
       <a href="/about" class="space-x-0.5 m-1 md:m-6 p-6 text-center">
@@ -112,14 +110,4 @@ const metadata = {
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
-
-  <!-- FAQs Widget ******************* -->
-  <FAQs
-    id="faq"
-    title="Frequently Asked Questions"
-    subtitle="Questions about your therapeutic experience? Find answers here. If you don't see what you're looking for, please do not hesitate to contact us."
-    tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
-    items={[...faqData]}
-  />
 </Layout>

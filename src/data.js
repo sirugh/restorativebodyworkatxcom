@@ -6,7 +6,7 @@ export const headerData = {
     { text: 'Book Now', href: 'https://my-business-restorativebodyworkatx.square.site/', target: '_blank' },
     { text: 'Services', href: getPermalink('/services') },
     { text: 'About', href: getPermalink('/about') },
-    { text: 'FAQ', href: getPermalink('/#faq') },
+    { text: 'FAQ', href: getPermalink('/faq') },
     // { text: 'Contact', href: getPermalink('/contact') },
   ],
   actions: [
