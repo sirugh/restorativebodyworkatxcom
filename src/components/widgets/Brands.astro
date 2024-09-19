@@ -8,6 +8,7 @@ import Image from '~/components/common/Image.astro';
 const {
   title = '',
   subtitle = '',
+  subSubTitle = '',
   tagline = '',
   icons = [],
   images = [],
@@ -19,7 +20,7 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <Headline title={title} subtitle={subtitle} subSubTitle={subSubTitle} tagline={tagline} />
 
   <div class="flex flex-wrap justify-center gap-x-6 sm:gap-x-12 lg:gap-x-24">
     {icons && icons.map((icon) => <Icon name={icon} class="py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500" />)}
