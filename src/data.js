@@ -1,9 +1,9 @@
-import { getAsset, getPermalink } from './utils/permalinks';
+import { getPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
     { text: 'Home', href: getPermalink('/') },
-    { text: 'Book Now', href: 'https://my-business-restorativebodyworkatx.square.site/', target: '_blank' },
+    { text: 'Book Now', href: 'https://www.massagebook.com/therapists/restorativebodyworkatx', target: '_blank' },
     { text: 'Services', href: getPermalink('/services') },
     { text: 'About', href: getPermalink('/about') },
     { text: 'FAQ', href: getPermalink('/faq') },
@@ -12,7 +12,7 @@ export const headerData = {
   actions: [
     // {
     //   text: 'Book now!',
-    //   href: 'https://my-business-restorativebodyworkatx.square.site/',
+    //   href: 'https://www.massagebook.com/therapists/restorativebodyworkatx',
     //   target: '_blank',
     //   icon: 'tabler:calendar-plus',
     // },
