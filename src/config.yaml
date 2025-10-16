@@ -21,11 +21,14 @@ metadata:
       - url: '~/assets/images/closeups/hands-back1.jpeg'
         width: 1200
         height: 628
+        alt: 'Restorative Bodywork - Therapeutic Massage in Austin'
     type: website
+    locale: en_US
   # twitter:
-  #   handle: '@onwidget'
-  #   site: '@onwidget'
   #   cardType: summary_large_image
+  #   site: '@restorativebodyworkatx'
+  #   creator: '@restorativebodyworkatx'
+  #   handle: '@restorativebodyworkatx'
 
 i18n:
   language: en
