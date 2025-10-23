@@ -28,7 +28,7 @@ export default defineConfig({
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
-  output: 'static',
+  output: 'hybrid', // Changed from 'static' to enable API routes for admin
 
   integrations: [
     tailwind({
