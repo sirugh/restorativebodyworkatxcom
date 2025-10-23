@@ -70,32 +70,49 @@ Tuesday:   [Closed]
 
 ---
 
-#### Option B: Simple Custom Admin Panel (Most Control)
+#### Option B: Simple Custom Admin Panel (CHOSEN APPROACH) ⭐
 
-**What it is:** Custom-built admin page with username/password protection.
+**What it is:** Custom-built admin page with username/password protection - no third-party dependencies.
 
 **Owner Experience:**
 1. Visits `/admin` (password protected)
-2. Fills out simple forms
+2. Fills out simple forms with clear labels
 3. Clicks "Save" - triggers rebuild
 
 **Setup:**
-- Create protected admin route in Astro
+- Create protected admin route in Astro (`src/pages/admin.astro`)
 - Build simple forms for each content type
-- Store data in `src/content.json`
-- Use API route to save changes
-- Trigger rebuild via webhook (Netlify/Vercel)
+- Store data in `src/content/site-data.json`
+- Use Astro API route to save changes (`src/pages/api/save-content.ts`)
+- Auto-rebuild via Netlify/Vercel webhook
+
+**Architecture:**
+```
+/admin (page)
+  → Simple HTML forms
+  → Password protection via environment variable
+  → Reads from src/content/site-data.json
+  → Posts to /api/save-content
+
+/api/save-content (API route)
+  → Validates authentication
+  → Saves to site-data.json
+  → Returns success/error
+  → Triggers rebuild webhook
+```
 
 **Pros:**
 - ✅ Complete control over interface
 - ✅ Simplest possible UI for owner
 - ✅ No third-party dependencies
 - ✅ Can add custom validation
+- ✅ Lightweight and fast
+- ✅ Works with SSR or static mode
 
 **Cons:**
-- ⚠️ Requires building the admin interface (~4-6 hours)
-- ⚠️ Need to handle authentication
-- ⚠️ More code to maintain
+- ⚠️ Requires building the admin interface (~3-4 hours)
+- ⚠️ Need to handle authentication (simple env var approach)
+- ⚠️ More code to maintain (but minimal)
 
 ---
 
@@ -121,7 +138,7 @@ Tuesday:   [Closed]
 
 ---
 
-### Recommended Approach: Decap CMS + Content JSON
+### Implementation Approach: Custom Admin Panel
 
 **Data Structure:**
 Create `src/content/site-data.json`:
@@ -136,7 +153,8 @@ Create `src/content/site-data.json`:
     "city": "Austin",
     "state": "TX",
     "zip": "78704",
-    "bookingUrl": "https://www.massagebook.com/therapists/restorativebodyworkatx"
+    "bookingUrl": "https://www.massagebook.com/therapists/restorativebodyworkatx",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3446.699230326372!2d-97.78387882394603!3d30.245652409008724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xab64db1f9f463763%3A0xc669fa7e156b773a!2sRestorative%20Bodywork!5e0!3m2!1sen!2sus!4v1715558773560!5m2!1sen!2sus"
   },
   "hours": {
     "sunday": "10:00 AM - 5:00 PM",
@@ -152,89 +170,48 @@ Create `src/content/site-data.json`:
     { "duration": "60 minutes", "price": 120 },
     { "duration": "75 minutes", "price": 150 },
     { "duration": "90 minutes", "price": 180 }
-  ],
-  "faqs": [
-    {
-      "title": "Before Your Appointment",
-      "description": "For your first appointment..."
-    }
   ]
 }
 ```
 
-**Decap CMS Config:**
-Create `public/admin/config.yml`:
+**Admin Page Structure:**
+Create `src/pages/admin.astro`:
+- Simple login form (checks password from env var)
+- Once authenticated, show content editing forms
+- Forms for: Business Info, Hours, Pricing
+- Save button that posts to API route
 
-```yaml
-backend:
-  name: git-gateway
-  branch: main
+**API Route:**
+Create `src/pages/api/save-content.ts`:
+- Validates authentication token
+- Receives JSON data from admin form
+- Writes to `src/content/site-data.json`
+- Returns success/error response
 
-media_folder: "public/images"
-public_folder: "/images"
-
-collections:
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - name: "site-data"
-        label: "Site Content"
-        file: "src/content/site-data.json"
-        fields:
-          - label: "Business Info"
-            name: "businessInfo"
-            widget: "object"
-            fields:
-              - {label: "Business Name", name: "name", widget: "string"}
-              - {label: "Phone", name: "phone", widget: "string"}
-              - {label: "Email", name: "email", widget: "string"}
-              - {label: "Address", name: "address", widget: "string"}
-              - {label: "City", name: "city", widget: "string"}
-              - {label: "State", name: "state", widget: "string"}
-              - {label: "Zip", name: "zip", widget: "string"}
-
-          - label: "Hours"
-            name: "hours"
-            widget: "object"
-            fields:
-              - {label: "Sunday", name: "sunday", widget: "string"}
-              - {label: "Monday", name: "monday", widget: "string"}
-              - {label: "Tuesday", name: "tuesday", widget: "string"}
-              - {label: "Wednesday", name: "wednesday", widget: "string"}
-              - {label: "Thursday", name: "thursday", widget: "string"}
-              - {label: "Friday", name: "friday", widget: "string"}
-              - {label: "Saturday", name: "saturday", widget: "string"}
-              - {label: "Note", name: "note", widget: "string"}
-
-          - label: "Pricing"
-            name: "pricing"
-            widget: "list"
-            fields:
-              - {label: "Duration", name: "duration", widget: "string"}
-              - {label: "Price", name: "price", widget: "number"}
-
-          - label: "FAQs"
-            name: "faqs"
-            widget: "list"
-            fields:
-              - {label: "Question", name: "title", widget: "string"}
-              - {label: "Answer", name: "description", widget: "text"}
+**Environment Variables:**
+```env
+ADMIN_PASSWORD=choose_a_secure_password
 ```
+
+### Files to Create
+1. `src/content/site-data.json` - Content storage
+2. `src/pages/admin.astro` - Admin interface
+3. `src/pages/api/save-content.ts` - Save API endpoint
 
 ### Files to Update
 - `src/pages/index.astro` - Import from `site-data.json`
 - `src/pages/contact.astro` - Import from `site-data.json`
 - `src/pages/faq.astro` - Import from `site-data.json`
-- `src/data.js` - Delete, content now in `site-data.json`
-- All components - Use centralized data
+- `src/data.js` - Merge FAQs into `site-data.json`, then delete
+- `astro.config.mjs` - Enable SSR mode for API routes
 
 ### Implementation Tasks
-1. Install Decap CMS: `npm install decap-cms-app`
-2. Create `/public/admin/index.html` and `/public/admin/config.yml`
-3. Create `src/content/site-data.json` with all editable content
-4. Update all pages to import from JSON file
-5. Enable Git Gateway on Netlify (or use GitHub OAuth)
-6. Set up admin user credentials for owner
+1. Enable SSR in Astro config (for API routes)
+2. Create `src/content/site-data.json` with all editable content
+3. Build admin interface at `/admin`
+4. Create API route for saving content
+5. Add basic authentication
+6. Update all pages to import from JSON file
 7. Test admin interface and content updates
 
 ### Owner Benefits
@@ -433,21 +410,29 @@ Simpler layout hierarchy
 
 ## Implementation Checklist
 
-### Phase 1: CMS Setup & Content Centralization
-- [ ] Choose CMS approach (Decap CMS recommended)
-- [ ] Install Decap CMS: `npm install decap-cms-app`
-- [ ] Create `public/admin/index.html`
-- [ ] Create `public/admin/config.yml` with content fields
-- [ ] Create `src/content/site-data.json` with all editable content
+### Phase 1: Custom Admin & Content Centralization
+- [ ] Check current Astro config (static vs hybrid/server mode)
+- [ ] Create `src/content/site-data.json` with all editable content (including FAQs from src/data.js)
+- [ ] Build admin interface at `src/pages/admin.astro` with:
+  - [ ] Login form with password protection
+  - [ ] Business info form section
+  - [ ] Hours form section
+  - [ ] Pricing form section
+  - [ ] FAQ management section
+  - [ ] Save button with loading state
+- [ ] Create API route at `src/pages/api/save-content.ts`:
+  - [ ] Authentication validation
+  - [ ] JSON parsing and validation
+  - [ ] File write to site-data.json
+  - [ ] Error handling
+- [ ] Set up environment variable for admin password
 - [ ] Update `src/pages/index.astro` to import from `site-data.json`
 - [ ] Update `src/pages/contact.astro` to import from `site-data.json`
 - [ ] Update `src/pages/faq.astro` to import from `site-data.json`
 - [ ] Update header/footer components to use centralized data
 - [ ] Delete `src/data.js` after merging into `site-data.json`
-- [ ] Set up Git Gateway on Netlify (or GitHub OAuth)
-- [ ] Configure admin user credentials
 - [ ] Test admin interface at `/admin`
-- [ ] Test content editing and auto-rebuild
+- [ ] Test content editing and save functionality
 - [ ] Create simple instructions document for owner
 
 ### Phase 2: Remove Blog System
@@ -573,17 +558,19 @@ For help or questions, contact: `[developer contact info]`
 ```markdown
 ## Content Management
 
-This site uses Decap CMS for easy content management.
+This site uses a custom admin interface for easy content management.
 
 **For Site Owner:**
 - Access admin panel: `https://restorativebodyworkatx.com/admin`
 - See `OWNER_GUIDE.md` for detailed instructions
 - No technical knowledge required
+- Login with your provided password
 
 **For Developers:**
-- Admin interface: `/public/admin/`
+- Admin interface: `src/pages/admin.astro`
 - Content file: `src/content/site-data.json`
-- CMS config: `/public/admin/config.yml`
+- Save API: `src/pages/api/save-content.ts`
+- Set `ADMIN_PASSWORD` environment variable
 - See `SIMPLIFICATION_PLAN.md` for implementation details
 ```
 
@@ -603,21 +590,22 @@ This site uses Decap CMS for easy content management.
 
 ## Timeline Estimate
 
-- Phase 1 (CMS setup + Content centralization): 4-6 hours
-  - Install and configure Decap CMS: 1-2 hours
-  - Create content data structure: 1 hour
-  - Update all pages to use centralized data: 1-2 hours
-  - Set up Git Gateway/authentication: 1 hour
-  - Testing and documentation: 1 hour
+- Phase 1 (Custom Admin + Content centralization): 3-4 hours
+  - Create content data structure: 30 min
+  - Build admin UI with forms: 1-2 hours
+  - Create save API route: 30-60 min
+  - Add authentication: 30 min
+  - Update all pages to use centralized data: 30-60 min
+  - Testing: 30 min
 - Phase 2 (Remove blog): 1-2 hours
 - Phase 3 (Remove unused components): 1-2 hours
 - Phase 4 (Simplify utilities): 2-3 hours
 - Phase 5 (Layouts): 1 hour
 - Phase 6 (Dependencies): 1 hour
 - Phase 7 (Types cleanup): 1 hour
-- Testing & Owner training: 2-3 hours
+- Testing & Owner documentation: 1-2 hours
 
-**Total: 13-20 hours of work**
+**Total: 10-16 hours of work**
 
 The work can be done incrementally - each phase is relatively independent and can be tested separately. Phase 1 provides the most immediate value to the site owner.
 
