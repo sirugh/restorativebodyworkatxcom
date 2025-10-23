@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CM5XzD-x.mjs';
 import 'kleur/colors';
-import { $ as $$PageLayout, a as $$Image } from '../chunks/PageLayout_DRUCuVYP.mjs';
+import { $ as $$PageLayout, a as $$Image } from '../chunks/PageLayout_CR274QlN.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$About = createComponent(($$result, $$props, $$slots) => {

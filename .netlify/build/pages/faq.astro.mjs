@@ -2,7 +2,7 @@ import { d as createAstro, c as createComponent, m as maybeRenderHead, b as addA
 import 'kleur/colors';
 import { $ as $$WidgetWrapper, a as $$Headline } from '../chunks/Headline_B-z4oYc-.mjs';
 import { twMerge } from 'tailwind-merge';
-import { b as $$Icon, c as $$Button, $ as $$PageLayout } from '../chunks/PageLayout_DRUCuVYP.mjs';
+import { b as $$Icon, c as $$Button, $ as $$PageLayout } from '../chunks/PageLayout_CR274QlN.mjs';
 import { s as siteData } from '../chunks/site-data_CA2xTrsl.mjs';
 export { renderers } from '../renderers.mjs';
 

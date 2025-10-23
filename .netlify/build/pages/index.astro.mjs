@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, m as maybeRenderHead, s as spreadAttributes, r as renderComponent, a as renderTemplate, b as addAttribute } from '../chunks/astro/server_CM5XzD-x.mjs';
 import 'kleur/colors';
-import { a as $$Image, $ as $$PageLayout } from '../chunks/PageLayout_DRUCuVYP.mjs';
+import { a as $$Image, $ as $$PageLayout } from '../chunks/PageLayout_CR274QlN.mjs';
 import { s as siteData } from '../chunks/site-data_CA2xTrsl.mjs';
 export { renderers } from '../renderers.mjs';
 

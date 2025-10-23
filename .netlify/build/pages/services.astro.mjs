@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, u as unescapeHTML, F as Fragment } from '../chunks/astro/server_CM5XzD-x.mjs';
 import 'kleur/colors';
-import { b as $$Icon, a as $$Image, c as $$Button, $ as $$PageLayout } from '../chunks/PageLayout_DRUCuVYP.mjs';
+import { b as $$Icon, a as $$Image, c as $$Button, $ as $$PageLayout } from '../chunks/PageLayout_CR274QlN.mjs';
 import { $ as $$WidgetWrapper, a as $$Headline } from '../chunks/Headline_B-z4oYc-.mjs';
 export { renderers } from '../renderers.mjs';
 

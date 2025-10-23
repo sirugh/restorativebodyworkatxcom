@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, m as maybeRenderHead, b as addAttribute, r as renderComponent, a as renderTemplate, u as unescapeHTML } from '../chunks/astro/server_CM5XzD-x.mjs';
 import 'kleur/colors';
-import { b as $$Icon, c as $$Button, $ as $$PageLayout } from '../chunks/PageLayout_DRUCuVYP.mjs';
+import { b as $$Icon, c as $$Button, $ as $$PageLayout } from '../chunks/PageLayout_CR274QlN.mjs';
 import { $ as $$WidgetWrapper, a as $$Headline } from '../chunks/Headline_B-z4oYc-.mjs';
 import { twMerge } from 'tailwind-merge';
 import { s as siteData } from '../chunks/site-data_CA2xTrsl.mjs';

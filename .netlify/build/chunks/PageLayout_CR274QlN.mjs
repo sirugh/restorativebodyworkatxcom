@@ -496,7 +496,7 @@ const $$PageLayout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$PageLayout;
   const { metadata } = Astro2.props;
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "metadata": metadata }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Main", $$Main, { "image": { src: "~/assets/images/logo/ResBodWork-logo-color.png", alt: "Restorative Bodywork Logo" } })} ${renderSlot($$result2, $$slots["header"], renderTemplate` ${renderComponent($$result2, "Header", $$Header, { ...headerData, "isFullWidth": true })} `)} ${maybeRenderHead()}<main> ${renderSlot($$result2, $$slots["default"])} </main> ${renderSlot($$result2, $$slots["footer"], renderTemplate` ${renderComponent($$result2, "Footer", $$Footer, { ...footerData })} `)} ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "metadata": metadata }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Main", $$Main, { "image": { src: "~/assets/images/logo/ResBodWork-logo-color.png", alt: "Restorative Bodywork Logo" } })} ${renderSlot($$result2, $$slots["header"], renderTemplate` ${renderComponent($$result2, "Header", $$Header, { ...headerData, "isSticky": true, "isFullWidth": true })} `)} ${maybeRenderHead()}<main> ${renderSlot($$result2, $$slots["default"])} </main> ${renderSlot($$result2, $$slots["footer"], renderTemplate` ${renderComponent($$result2, "Footer", $$Footer, { ...footerData })} `)} ` })}`;
 }, "/home/user/restorativebodyworkatxcom/src/layouts/PageLayout.astro", void 0);
 
 export { $$PageLayout as $, $$Image as a, $$Icon as b, $$Button as c };
