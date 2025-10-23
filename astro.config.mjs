@@ -8,6 +8,7 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
+import netlify from '@astrojs/netlify';
 import tasks from './src/utils/tasks';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
@@ -29,6 +30,7 @@ export default defineConfig({
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
   output: 'hybrid', // Changed from 'static' to enable API routes for admin
+  adapter: netlify(),
 
   integrations: [
     tailwind({

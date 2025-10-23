@@ -1,0 +1,29 @@
+import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CM5XzD-x.mjs';
+import 'kleur/colors';
+import { $ as $$PageLayout, a as $$Image } from '../chunks/PageLayout_DRUCuVYP.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$About = createComponent(($$result, $$props, $$slots) => {
+  const metadata = {
+    title: "About Rose - Licensed Massage Therapist in Austin, TX",
+    description: "Meet Rose, licensed massage therapist and owner of Restorative Bodywork in Austin. Specializing in therapeutic massage utilizing cupping, IASTM, and Manual Lymph Drainage."
+  };
+  return renderTemplate`${renderComponent($$result, "Layout", $$PageLayout, { "metadata": metadata }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col text-default sm:text-sm md:text-xl max-w-7xl mx-auto py-12 px-4 sm:px-6 justify-center items-center "> <!-- Rose circle photo --> <div class="w-64 h-64 overflow-hidden rounded-full shadow-lg"> <div class="w-full h-full object-cover"> ${renderComponent($$result2, "Image", $$Image, { "src": "~/assets/images/rose_headshot.jpeg", "alt": "Rose" })} </div> </div> <!-- Rose name underneath --> <div class="text-2xl font-bold m-5">Rose</div> <div class="flex flex-col gap-4 justify-center items-center"> <!-- <span class="font-bold">About</span> --> <div class="max-w-xl font-light">
+Hello, I'm Rose, owner of Restorative Bodywork in Austin, TX. I am dedicated to providing personalized and
+      effective massage experiences. My expertise lies in therapeutic massage, utilizing techniques such as deep tissue, cupping, muscle scraping, Swedish, and Manual Lymph Drainage to deliver a massage experience tailored to your needs.
+</div> <span class="font-bold">Education</span> <div class="max-w-xl font-light"> <ul> <li>Laustein-Conway Massage School</li> <li>Cupping Therapy from International Cupping Therapy Association</li> <li>Instrument Assisted Soft Tissue Mobilization (IASTM) from Graston Technique</li> <li>Manual Lymph Drainage Certification from Klose Training</li> <li>BS in Biology from University of Texas at San Antonio</li> <li>MS in Exercise Science from Texas State University</li> </ul> </div> </div> </div> ` })}`;
+}, "/home/user/restorativebodyworkatxcom/src/pages/about.astro", void 0);
+
+const $$file = "/home/user/restorativebodyworkatxcom/src/pages/about.astro";
+const $$url = "/about";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$About,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

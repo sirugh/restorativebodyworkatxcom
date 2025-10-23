@@ -43,7 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Get the path to site-data.json
-    const filePath = path.join(process.cwd(), 'src', 'content', 'site-data.json');
+    const filePath = path.join(process.cwd(), 'src', 'data', 'site-data.json');
 
     // Write the data to file
     await fs.writeFile(

@@ -1,0 +1,11 @@
+---
+import Image from '~/components/common/Image.astro';
+
+const { image } = Astro.props;
+---
+
+{image && (
+  <div class="flex justify-center p-4">
+    <Image {...image} class="max-w-xs" />
+  </div>
+)}
