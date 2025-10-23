@@ -18,67 +18,232 @@ This site is built on the AstroWind template, which is designed for complex, mul
 
 ---
 
-## Phase 1: Content Centralization 🎯
+## Phase 1: Content Management System (CMS) 🎯
 
 ### Problem
-Content like pricing, hours, and contact info is hardcoded across multiple files, requiring developer intervention for simple updates.
+Content like pricing, hours, and contact info is hardcoded across multiple files, requiring developer intervention for simple updates. **Owner is non-technical and needs a user-friendly web interface to make edits.**
 
-### Solution
-Create `src/content.js` as single source of truth:
+### Solution Options
 
-```javascript
-// src/content.js - Edit this file to update site content
+#### Option A: Decap CMS (Recommended - Free & Simple) ⭐
 
-export const businessInfo = {
-  name: 'Restorative Bodywork',
-  phone: '(512) 920-3103',
-  phoneLink: 'tel:+15129203103',
-  email: 'info@restorativebodyworkatx.com',
-  address: '2111 Dickson Dr #14',
-  city: 'Austin',
-  state: 'TX',
-  zip: '78704',
-  fullAddress: '2111 Dickson Dr #14, Austin, TX 78704',
-  bookingUrl: 'https://www.massagebook.com/therapists/restorativebodyworkatx',
-  mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3446.699230326372!2d-97.78387882394603!3d30.245652409008724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xab64db1f9f463763%3A0xc669fa7e156b773a!2sRestorative%20Bodywork!5e0!3m2!1sen!2sus!4v1715558773560!5m2!1sen!2sus',
-}
+**What it is:** Free, open-source CMS with a web interface. No database needed, stores content in Git.
 
-export const hours = {
-  sunday: { open: '10:00 AM', close: '5:00 PM' },
-  monday: { open: '10:00 AM', close: '7:00 PM' },
-  tuesday: 'Closed',
-  wednesday: 'Closed',
-  thursday: 'Closed',
-  friday: 'Closed',
-  saturday: { open: '10:00 AM', close: '5:00 PM' },
-  note: 'By appointment only',
-}
+**Owner Experience:**
+1. Visits `/admin` on the website
+2. Logs in with username/password
+3. Edits content through simple forms
+4. Clicks "Save" - site rebuilds automatically
 
-export const pricing = [
-  { duration: '60 minutes', price: 120 },
-  { duration: '75 minutes', price: 150 },
-  { duration: '90 minutes', price: 180 },
-]
+**Setup:**
+- Add Decap CMS to Astro (~30 min setup)
+- Create admin interface at `/public/admin/`
+- Configure forms for pricing, hours, contact info, FAQs
+- Content stored in `src/content/` as JSON/YAML files
+- Works with existing Netlify/Vercel deployment
 
-// FAQ data (currently in src/data.js - consolidate here)
-export const faqs = [
-  {
-    title: 'Before Your Appointment',
-    description: 'For your first appointment, please arrive 15 minutes prior...',
+**Pros:**
+- ✅ Free and open-source
+- ✅ No database or server required
+- ✅ Simple form-based editing
+- ✅ No coding knowledge needed for owner
+- ✅ Works with static site generators
+- ✅ Preview changes before publishing
+
+**Cons:**
+- ⚠️ Requires GitHub authentication or Git Gateway
+- ⚠️ Slight learning curve for CMS interface
+
+**Example Admin Interface:**
+```yaml
+# Pricing Form
+60 Minute Session: $[120]
+75 Minute Session: $[150]
+90 Minute Session: $[180]
+
+# Hours Form
+Sunday:    [10:00 AM] - [5:00 PM]
+Monday:    [10:00 AM] - [7:00 PM]
+Tuesday:   [Closed]
+...
+```
+
+---
+
+#### Option B: Simple Custom Admin Panel (Most Control)
+
+**What it is:** Custom-built admin page with username/password protection.
+
+**Owner Experience:**
+1. Visits `/admin` (password protected)
+2. Fills out simple forms
+3. Clicks "Save" - triggers rebuild
+
+**Setup:**
+- Create protected admin route in Astro
+- Build simple forms for each content type
+- Store data in `src/content.json`
+- Use API route to save changes
+- Trigger rebuild via webhook (Netlify/Vercel)
+
+**Pros:**
+- ✅ Complete control over interface
+- ✅ Simplest possible UI for owner
+- ✅ No third-party dependencies
+- ✅ Can add custom validation
+
+**Cons:**
+- ⚠️ Requires building the admin interface (~4-6 hours)
+- ⚠️ Need to handle authentication
+- ⚠️ More code to maintain
+
+---
+
+#### Option C: Tina CMS (Modern, Visual Editing)
+
+**What it is:** Modern, visual CMS that lets owner edit content directly on the page.
+
+**Owner Experience:**
+1. Logs in via `/admin`
+2. Browses to any page
+3. Clicks "Edit" and changes content inline
+4. Saves and publishes
+
+**Pros:**
+- ✅ Beautiful visual editing
+- ✅ Live preview
+- ✅ Modern interface
+
+**Cons:**
+- ⚠️ More complex setup than Decap
+- ⚠️ Free tier has limitations
+- ⚠️ May be overkill for simple site
+
+---
+
+### Recommended Approach: Decap CMS + Content JSON
+
+**Data Structure:**
+Create `src/content/site-data.json`:
+
+```json
+{
+  "businessInfo": {
+    "name": "Restorative Bodywork",
+    "phone": "(512) 920-3103",
+    "email": "info@restorativebodyworkatx.com",
+    "address": "2111 Dickson Dr #14",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78704",
+    "bookingUrl": "https://www.massagebook.com/therapists/restorativebodyworkatx"
   },
-  // ... rest of FAQ items
-]
+  "hours": {
+    "sunday": "10:00 AM - 5:00 PM",
+    "monday": "10:00 AM - 7:00 PM",
+    "tuesday": "Closed",
+    "wednesday": "Closed",
+    "thursday": "Closed",
+    "friday": "Closed",
+    "saturday": "10:00 AM - 5:00 PM",
+    "note": "By appointment only"
+  },
+  "pricing": [
+    { "duration": "60 minutes", "price": 120 },
+    { "duration": "75 minutes", "price": 150 },
+    { "duration": "90 minutes", "price": 180 }
+  ],
+  "faqs": [
+    {
+      "title": "Before Your Appointment",
+      "description": "For your first appointment..."
+    }
+  ]
+}
+```
+
+**Decap CMS Config:**
+Create `public/admin/config.yml`:
+
+```yaml
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "site-data"
+        label: "Site Content"
+        file: "src/content/site-data.json"
+        fields:
+          - label: "Business Info"
+            name: "businessInfo"
+            widget: "object"
+            fields:
+              - {label: "Business Name", name: "name", widget: "string"}
+              - {label: "Phone", name: "phone", widget: "string"}
+              - {label: "Email", name: "email", widget: "string"}
+              - {label: "Address", name: "address", widget: "string"}
+              - {label: "City", name: "city", widget: "string"}
+              - {label: "State", name: "state", widget: "string"}
+              - {label: "Zip", name: "zip", widget: "string"}
+
+          - label: "Hours"
+            name: "hours"
+            widget: "object"
+            fields:
+              - {label: "Sunday", name: "sunday", widget: "string"}
+              - {label: "Monday", name: "monday", widget: "string"}
+              - {label: "Tuesday", name: "tuesday", widget: "string"}
+              - {label: "Wednesday", name: "wednesday", widget: "string"}
+              - {label: "Thursday", name: "thursday", widget: "string"}
+              - {label: "Friday", name: "friday", widget: "string"}
+              - {label: "Saturday", name: "saturday", widget: "string"}
+              - {label: "Note", name: "note", widget: "string"}
+
+          - label: "Pricing"
+            name: "pricing"
+            widget: "list"
+            fields:
+              - {label: "Duration", name: "duration", widget: "string"}
+              - {label: "Price", name: "price", widget: "number"}
+
+          - label: "FAQs"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - {label: "Question", name: "title", widget: "string"}
+              - {label: "Answer", name: "description", widget: "text"}
 ```
 
 ### Files to Update
-- `src/pages/index.astro` - Import pricing/contact from content.js (lines 28-99)
-- `src/pages/contact.astro` - Import hours/contact from content.js (lines 16-42)
-- `src/data.js` - Merge into content.js, delete original
-- `src/components/widgets/Header.astro` - Use centralized contact info
-- `src/components/widgets/Footer.astro` - Use centralized contact info
+- `src/pages/index.astro` - Import from `site-data.json`
+- `src/pages/contact.astro` - Import from `site-data.json`
+- `src/pages/faq.astro` - Import from `site-data.json`
+- `src/data.js` - Delete, content now in `site-data.json`
+- All components - Use centralized data
+
+### Implementation Tasks
+1. Install Decap CMS: `npm install decap-cms-app`
+2. Create `/public/admin/index.html` and `/public/admin/config.yml`
+3. Create `src/content/site-data.json` with all editable content
+4. Update all pages to import from JSON file
+5. Enable Git Gateway on Netlify (or use GitHub OAuth)
+6. Set up admin user credentials for owner
+7. Test admin interface and content updates
 
 ### Owner Benefits
-Change prices, hours, or contact info in ONE place, without touching HTML/Astro code.
+- ✅ User-friendly web interface at `/admin`
+- ✅ No coding or GitHub knowledge required
+- ✅ Simple forms to update pricing, hours, contact info
+- ✅ Preview changes before publishing
+- ✅ Can't accidentally break the site
+- ✅ Just needs username/password to login
 
 ---
 
@@ -249,12 +414,16 @@ Simpler layout hierarchy
 - **15-20 components** (60% reduction)
 - **5-6 config files**
 - No blog infrastructure
-- **Single content.js file** for all business info
+- **Web-based admin panel** for content management
 
 ### Maintenance Benefits:
-- ✅ Owner can update prices in `src/content.js` without developer
-- ✅ Owner can update hours in `src/content.js` without developer
-- ✅ Owner can update contact info in `src/content.js` without developer
+- ✅ Owner logs into `/admin` with username/password
+- ✅ Owner updates prices through simple web forms
+- ✅ Owner updates hours through simple web forms
+- ✅ Owner updates contact info through simple web forms
+- ✅ **No technical knowledge required** - just click and type
+- ✅ **No GitHub, code editor, or terminal access needed**
+- ✅ Can't accidentally break the site
 - ✅ Fewer files to maintain and understand
 - ✅ Faster build times
 - ✅ Easier onboarding for future developers
@@ -264,13 +433,22 @@ Simpler layout hierarchy
 
 ## Implementation Checklist
 
-### Phase 1: Content Centralization
-- [ ] Create `src/content.js` with businessInfo, hours, pricing, FAQs
-- [ ] Update `src/pages/index.astro` to import from `content.js`
-- [ ] Update `src/pages/contact.astro` to import from `content.js`
-- [ ] Update header/footer components to use centralized contact info
-- [ ] Delete `src/data.js` after merging
-- [ ] Test that pricing/hours/contact display correctly on all pages
+### Phase 1: CMS Setup & Content Centralization
+- [ ] Choose CMS approach (Decap CMS recommended)
+- [ ] Install Decap CMS: `npm install decap-cms-app`
+- [ ] Create `public/admin/index.html`
+- [ ] Create `public/admin/config.yml` with content fields
+- [ ] Create `src/content/site-data.json` with all editable content
+- [ ] Update `src/pages/index.astro` to import from `site-data.json`
+- [ ] Update `src/pages/contact.astro` to import from `site-data.json`
+- [ ] Update `src/pages/faq.astro` to import from `site-data.json`
+- [ ] Update header/footer components to use centralized data
+- [ ] Delete `src/data.js` after merging into `site-data.json`
+- [ ] Set up Git Gateway on Netlify (or GitHub OAuth)
+- [ ] Configure admin user credentials
+- [ ] Test admin interface at `/admin`
+- [ ] Test content editing and auto-rebuild
+- [ ] Create simple instructions document for owner
 
 ### Phase 2: Remove Blog System
 - [ ] Delete `src/components/blog/` directory
@@ -322,49 +500,91 @@ Simpler layout hierarchy
 ### Testing & Documentation
 - [ ] Run `npm run dev` and verify all 6 pages render correctly
 - [ ] Test mobile responsiveness on all pages
-- [ ] Test content updates in `src/content.js`
+- [ ] Test CMS admin interface at `/admin`
+- [ ] Test content updates through CMS forms
+- [ ] Verify changes appear on live site after saving
 - [ ] Run `npm run build` and check for errors
-- [ ] Add documentation comment block at top of `src/content.js`
-- [ ] Update README.md with content management instructions
+- [ ] Create owner instruction guide for using the CMS
+- [ ] Update README.md with admin access information
 
 ---
 
 ## Documentation for Site Owner
 
-After implementation, add this to the top of `src/content.js`:
+Create a simple instruction document (e.g., `OWNER_GUIDE.md` or PDF):
 
-```javascript
-/**
- * CONTENT MANAGEMENT - Edit this file to update site content
- *
- * This file contains all the content that appears on your website.
- * You can edit pricing, hours, contact information, and more without
- * needing to touch any other code files.
- *
- * After making changes:
- * 1. Save this file
- * 2. Run 'npm run build' to rebuild the site
- * 3. Deploy the changes (if auto-deploy is not set up)
- *
- * Need help? Contact your developer.
- */
-```
+### How to Update Your Website Content
 
-Add to README.md:
+**Accessing the Admin Panel**
+
+1. Go to: `https://restorativebodyworkatx.com/admin`
+2. Log in with your credentials:
+   - Username: `[provided by developer]`
+   - Password: `[provided by developer]`
+
+**Updating Pricing**
+
+1. Click on "Site Content" in the admin panel
+2. Scroll to the "Pricing" section
+3. Edit the price for each session duration
+4. Click "Save" at the top
+5. Wait a few minutes for the site to rebuild
+6. Refresh your website to see the changes
+
+**Updating Hours**
+
+1. Click on "Site Content"
+2. Scroll to the "Hours" section
+3. Update the hours for any day (e.g., change "10:00 AM - 5:00 PM" to "11:00 AM - 6:00 PM")
+4. For closed days, type "Closed"
+5. Click "Save"
+
+**Updating Contact Information**
+
+1. Click on "Site Content"
+2. Find the "Business Info" section
+3. Edit phone, email, or address as needed
+4. Click "Save"
+
+**Updating FAQs**
+
+1. Click on "Site Content"
+2. Scroll to the "FAQs" section
+3. To edit: Click on an FAQ item and modify the question or answer
+4. To add: Click "Add FAQ" button
+5. To remove: Click the X or delete button next to an FAQ
+6. Click "Save"
+
+**Important Notes**
+
+- Changes may take 2-5 minutes to appear on the live website
+- You cannot break the website through the admin panel - all changes are safe
+- If you make a mistake, you can always change it back
+- If something doesn't look right, contact your developer
+
+**Support**
+
+For help or questions, contact: `[developer contact info]`
+
+---
+
+**Also add to README.md:**
 
 ```markdown
-## Updating Site Content
+## Content Management
 
-All site content (pricing, hours, contact info, FAQs) is managed in a single file: `src/content.js`
+This site uses Decap CMS for easy content management.
 
-To update content:
-1. Open `src/content.js` in any text editor
-2. Edit the values (prices, hours, contact info, etc.)
-3. Save the file
-4. Rebuild the site: `npm run build`
-5. Deploy (may be automatic depending on hosting setup)
+**For Site Owner:**
+- Access admin panel: `https://restorativebodyworkatx.com/admin`
+- See `OWNER_GUIDE.md` for detailed instructions
+- No technical knowledge required
 
-No developer knowledge required for content updates!
+**For Developers:**
+- Admin interface: `/public/admin/`
+- Content file: `src/content/site-data.json`
+- CMS config: `/public/admin/config.yml`
+- See `SIMPLIFICATION_PLAN.md` for implementation details
 ```
 
 ---
@@ -383,18 +603,23 @@ No developer knowledge required for content updates!
 
 ## Timeline Estimate
 
-- Phase 1 (Content centralization): 2-3 hours
+- Phase 1 (CMS setup + Content centralization): 4-6 hours
+  - Install and configure Decap CMS: 1-2 hours
+  - Create content data structure: 1 hour
+  - Update all pages to use centralized data: 1-2 hours
+  - Set up Git Gateway/authentication: 1 hour
+  - Testing and documentation: 1 hour
 - Phase 2 (Remove blog): 1-2 hours
 - Phase 3 (Remove unused components): 1-2 hours
 - Phase 4 (Simplify utilities): 2-3 hours
 - Phase 5 (Layouts): 1 hour
 - Phase 6 (Dependencies): 1 hour
 - Phase 7 (Types cleanup): 1 hour
-- Testing & Documentation: 2-3 hours
+- Testing & Owner training: 2-3 hours
 
-**Total: 11-17 hours of work**
+**Total: 13-20 hours of work**
 
-The work can be done incrementally - each phase is relatively independent and can be tested separately.
+The work can be done incrementally - each phase is relatively independent and can be tested separately. Phase 1 provides the most immediate value to the site owner.
 
 ---
 
