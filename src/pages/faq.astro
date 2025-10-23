@@ -1,13 +1,14 @@
 ---
 import FAQs from '~/components/widgets/FAQs.astro';
-import { faqData } from '~/data';
+import siteData from '~/content/site-data.json';
 import Layout from '~/layouts/PageLayout.astro';
-
 
 const metadata = {
   title: 'FAQ - Massage Appointment Questions & Policies',
   description: 'Frequently asked questions about massage appointments, payment, cancellation policies, and what to expect at Restorative Bodywork in Austin, TX.',
 };
+
+const { faqs } = siteData;
 ---
 
 <Layout metadata={metadata}>
@@ -18,6 +19,6 @@ const metadata = {
     subtitle="Questions about your therapeutic experience? Find answers here. If you don't see what you're looking for, please do not hesitate to contact us."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
-    items={[...faqData]}
+    items={faqs}
   />
 </Layout>

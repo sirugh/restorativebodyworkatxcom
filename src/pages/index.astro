@@ -2,12 +2,15 @@
 import Hero from '~/components/widgets/Hero.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
+import siteData from '~/content/site-data.json';
+
 const metadata = {
   title: 'Restorative Bodywork - Therapeutic Massage in Austin, TX',
   description: 'Professional therapeutic massage services in South Austin. Deep tissue, cupping, muscle scraping, Swedish massage, and Manual Lymph Drainage. Book your appointment today.',
   ignoreTitleTemplate: true,
 };
 
+const { businessInfo, pricing } = siteData;
 ---
 
 <Layout metadata={metadata}>
@@ -16,58 +19,29 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Book an appointment',
-        href: 'https://www.massagebook.com/therapists/restorativebodyworkatx',
+        href: businessInfo.bookingUrl,
         icon: 'tabler:calendar-plus',
       },
-      // { text: 'Our services', href: '/services', class: 'lg:hidden flex w-full' },
-      // { text: 'Contact Information & Location', href: '/contact', class: 'lg:hidden flex w-full' },
     ]}
     image={{ src: '~/assets/images/closeups/hands-back1.jpeg', alt: 'Restorative Bodywork Hero' }}
   />
   <div class="w-full p-4">
     <h2 class="text-2xl font-semibold text-center">Our Rates</h2>
     <div class="flex flex-col md:flex-row justify-center">
-      <!-- Card 1 -->
-      <a
-        href="https://www.massagebook.com/therapists/restorativebodyworkatx"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
-      >
-        <div class="block text-sm font-bold text-left">
-          Duration:
-          <span class="text-xs md:text-sm">60 minutes</span>
-        </div>
-        <span class="block text-sm font-bold text-left">Cost: $120</span>
-      </a>
-
-      <!-- Card 2 -->
-      <a
-        href="https://www.massagebook.com/therapists/restorativebodyworkatx"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
-      >
-        <div class="block text-sm font-bold text-left">
-          Duration:
-          <span class="text-xs md:text-sm">75 minutes</span>
-        </div>
-        <span class="block text-sm font-bold text-left">Cost: $150</span>
-      </a>
-
-      <!-- Card 3 -->
-      <a
-        href="https://www.massagebook.com/therapists/restorativebodyworkatx"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
-      >
-        <div class="block text-sm font-bold text-left">
-          Duration:
-          <span class="text-xs md:text-sm">90 minutes</span>
-        </div>
-        <span class="block text-sm font-bold text-left">Cost: $180</span>
-      </a>
+      {pricing.map((item) => (
+        <a
+          href={businessInfo.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full bg-white shadow-md rounded-lg m-1 md:m-6 p-6 text-center hover:shadow-inner hover:bg-opacity-20 hover:bg-[#3d785c] transition-all"
+        >
+          <div class="block text-sm font-bold text-left">
+            Duration:
+            <span class="text-xs md:text-sm">{item.duration}</span>
+          </div>
+          <span class="block text-sm font-bold text-left">Cost: ${item.price}</span>
+        </a>
+      ))}
     </div>
   </div>
   <!-- Info section -->
@@ -93,9 +67,9 @@ const metadata = {
       >
         <div class="block text-sm text-left">
           <span class="font-bold">Contact Info</span>
-          <div>phone: (512) 920-3103</div>
-          <div>email: info@restorativebodyworkatx.com</div>
-          <div>address: 2111 Dickson Dr #14, Austin, TX 78704</div>
+          <div>phone: {businessInfo.phone}</div>
+          <div>email: {businessInfo.email}</div>
+          <div>address: {businessInfo.address}, {businessInfo.city}, {businessInfo.state} {businessInfo.zip}</div>
         </div>
       </a>
     </div>
@@ -104,7 +78,7 @@ const metadata = {
   <div class="w-full p-4">
     <iframe
       style="width:100%"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3446.699230326372!2d-97.78387882394603!3d30.245652409008724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xab64db1f9f463763%3A0xc669fa7e156b773a!2sRestorative%20Bodywork!5e0!3m2!1sen!2sus!4v1715558773560!5m2!1sen!2sus"
+      src={businessInfo.mapEmbedUrl}
       height="450"
       style="border:0;"
       allowfullscreen=""

@@ -3,11 +3,17 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import siteData from '~/content/site-data.json';
 
 const metadata = {
   title: 'Contact Us - Restorative Bodywork Austin Location & Hours',
   description: 'Contact Restorative Bodywork in South Austin. Located at 2111 Dickson Dr #14. Call (512) 920-3103 or book online. Hours: Sunday & Saturday 10am-5pm, Monday 10am-7pm.',
 };
+
+const { businessInfo, hours } = siteData;
+
+// Format phone for tel: link
+const phoneLink = businessInfo.phone.replace(/[^0-9]/g, '');
 ---
 
 <Layout metadata={metadata}>
@@ -17,26 +23,26 @@ const metadata = {
       {
         title: 'Hours',
         description: `
-          <i>By appointment only.</i></br>
-          Sunday: 10am - 5pm</br>
-          Monday: 10am - 7pm</br>
-          Tuesday: Closed</br>
-          Wednesday: Closed</br>
-          Thursday: Closed</br>
-          Friday: Closed</br>
-          Saturday: 10am - 5pm</br>
+          <i>${hours.note}</i></br>
+          Sunday: ${hours.sunday}</br>
+          Monday: ${hours.monday}</br>
+          Tuesday: ${hours.tuesday}</br>
+          Wednesday: ${hours.wednesday}</br>
+          Thursday: ${hours.thursday}</br>
+          Friday: ${hours.friday}</br>
+          Saturday: ${hours.saturday}</br>
           `,
           icon: 'tabler:clock'
       },
 
       {
         title: 'Contact',
-        description: '<a href="tel:+15129203103">(512) 920-3103</a></br><a href="mailto:info@restorativebodyworkatx.com">info@restorativebodyworkatx.com</a>',
+        description: `<a href="tel:+1${phoneLink}">${businessInfo.phone}</a></br><a href="mailto:${businessInfo.email}">${businessInfo.email}</a>`,
         icon: 'tabler:mail',
       },
       {
         title: 'Location',
-        description: '<a href="https://www.google.com/maps?q=2111+Dickson+Drive+%2314,+Austin,+TX+78704">2111 Dicken Drive #14, Austin, TX 78704</a>',
+        description: `<a href="https://www.google.com/maps?q=${encodeURIComponent(businessInfo.address + ', ' + businessInfo.city + ', ' + businessInfo.state + ' ' + businessInfo.zip)}">${businessInfo.address}, ${businessInfo.city}, ${businessInfo.state} ${businessInfo.zip}</a>`,
         icon: 'tabler:map-pin',
       },
     ]}
