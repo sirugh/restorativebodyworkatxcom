@@ -15,12 +15,13 @@ export interface Props {
 const { id, image = await Astro.slots.render('image') } = Astro.props;
 ---
 
-<section class="relative not-prose overflow-hidden h-[420px] md:h-[560px]" {...id ? { id } : {}}>
+<section class="relative not-prose overflow-hidden h-[45vw] min-h-[380px] max-h-[700px]" {...id ? { id } : {}}>
   <Image
-    class="absolute inset-0 w-full h-full object-cover object-center"
+    class="absolute inset-0 w-full !h-full object-cover object-center"
     loading="eager"
     width={1920}
     height={560}
+    layout="fullWidth"
     {...image}
   />
   <div class="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-transparent"></div>
@@ -37,7 +38,7 @@ const { id, image = await Astro.slots.render('image') } = Astro.props;
     </p>
     <button
       id="appointment"
-      class="cursor-pointer inline-flex items-center gap-2.5 bg-[#79b791] hover:bg-[#3d785c] text-white font-medium text-sm md:text-base px-8 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+      class="cursor-pointer inline-flex items-center gap-2.5 bg-[#3d785c] hover:bg-[#2a5a42] text-white font-medium text-sm md:text-base px-8 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
       style="font-family: 'Nunito', sans-serif;"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
