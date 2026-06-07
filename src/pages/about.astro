@@ -1,40 +1,100 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
+
 const metadata = {
   title: 'About Rose - Licensed Massage Therapist in Austin, TX',
-  description: 'Meet Rose, licensed massage therapist and owner of Restorative Bodywork in Austin. Specializing in therapeutic massage utilizing cupping, IASTM, and Manual Lymph Drainage.',
+  description:
+    'Meet Rose, licensed massage therapist and owner of Restorative Bodywork in Austin. Specializing in therapeutic massage utilizing cupping, IASTM, and Manual Lymph Drainage.',
 };
+
+const education = [
+  'Laustein-Conway Massage School',
+  'Cupping Therapy — International Cupping Therapy Association',
+  'Instrument Assisted Soft Tissue Mobilization (IASTM) — Graston Technique',
+  'Manual Lymph Drainage Certification — Klose Training',
+  'BS in Biology — University of Texas at San Antonio',
+  'MS in Exercise Science — Texas State University',
+];
 ---
 
 <Layout metadata={metadata}>
-  <div class="flex flex-col text-default sm:text-sm md:text-xl max-w-7xl mx-auto py-12 px-4 sm:px-6 justify-center items-center ">
-  <!-- Rose circle photo -->
-  <div class="w-64 h-64 overflow-hidden rounded-full shadow-lg">
-    <div class="w-full h-full object-cover">
-      <Image src="~/assets/images/rose_headshot.jpeg" alt="Rose" />
-    </div>
-  </div>
-  <!-- Rose name underneath -->
-  <div class="text-2xl font-bold m-5">Rose</div>
+  <section class="py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row gap-12 items-start">
+        <!-- Photo column -->
+        <div class="flex flex-col items-center md:items-start flex-shrink-0 md:w-64">
+          <div
+            class="w-52 h-52 md:w-64 md:h-64 overflow-hidden rounded-full shadow-xl ring-4 ring-[#79b791]/30"
+          >
+            <Image
+              src="~/assets/images/rose_headshot.jpeg"
+              alt="Rose - Licensed Massage Therapist and Owner of Restorative Bodywork"
+              class="w-full h-full object-cover"
+              width={256}
+              height={256}
+            />
+          </div>
+          <h1
+            class="text-4xl mt-6 text-center md:text-left"
+            style="font-family: 'Cormorant Garamond', serif; font-weight: 600;"
+          >
+            Rose
+          </h1>
+          <p class="text-muted text-sm text-center md:text-left mt-1 leading-relaxed">
+            Licensed Massage Therapist<br />Owner, Restorative Bodywork
+          </p>
+          <a
+            href="https://www.massagebook.com/therapists/restorativebodyworkatx"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center gap-2 bg-[#79b791] hover:bg-[#3d785c] text-white font-medium px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg text-sm"
+            style="font-family: 'Nunito', sans-serif;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Book a Session
+          </a>
+        </div>
 
-  <div class="flex flex-col gap-4 justify-center items-center">
-    <!-- <span class="font-bold">About</span> -->
-    <div class="max-w-xl font-light">
-      Hello, I'm Rose, owner of Restorative Bodywork in Austin, TX. I am dedicated to providing personalized and
-      effective massage experiences. My expertise lies in therapeutic massage, utilizing techniques such as deep tissue, cupping, muscle scraping, Swedish, and Manual Lymph Drainage to deliver a massage experience tailored to your needs.
+        <!-- Text column -->
+        <div class="flex-1 space-y-10">
+          <div>
+            <h2
+              class="text-2xl md:text-3xl text-[#3d785c] mb-4"
+              style="font-family: 'Cormorant Garamond', serif; font-weight: 600;"
+            >
+              About
+            </h2>
+            <p class="text-default leading-relaxed text-base md:text-lg">
+              Hello, I'm Rose, owner of Restorative Bodywork in Austin, TX. I am dedicated to providing
+              personalized and effective massage experiences. My expertise lies in therapeutic massage,
+              utilizing techniques such as deep tissue, cupping, muscle scraping, Swedish, and Manual Lymph
+              Drainage to deliver a massage experience tailored to your needs.
+            </p>
+          </div>
+
+          <div>
+            <h2
+              class="text-2xl md:text-3xl text-[#3d785c] mb-5"
+              style="font-family: 'Cormorant Garamond', serif; font-weight: 600;"
+            >
+              Education &amp; Certifications
+            </h2>
+            <ul class="space-y-4">
+              {
+                education.map((item) => (
+                  <li class="flex items-start gap-3">
+                    <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[#79b791] flex-shrink-0" />
+                    <span class="text-default leading-relaxed">{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <span class="font-bold">Education</span>
-    <div class="max-w-xl font-light">
-      <ul>
-        <li>Laustein-Conway Massage School</li>
-        <li>Cupping Therapy from International Cupping Therapy Association</li>
-        <li>Instrument Assisted Soft Tissue Mobilization (IASTM) from Graston Technique</li>
-        <li>Manual Lymph Drainage Certification from Klose Training</li>
-        <li>BS in Biology from University of Texas at San Antonio</li>
-        <li>MS in Exercise Science from Texas State University</li>
-      </ul>
-    </div>
-  </div>
-</div>
+  </section>
 </Layout>

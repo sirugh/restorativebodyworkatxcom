@@ -1,82 +1,148 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Brands from '~/components/widgets/Brands.astro';
-import Hero2 from '~/components/widgets/Hero2.astro';
+import Image from '~/components/common/Image.astro';
 
 const metadata = {
   title: 'Massage Services - Deep Tissue, Cupping, Muscle Scraping in Austin',
-  description: 'Professional massage services in Austin: Deep tissue massage, cupping therapy, muscle scraping (IASTM), Swedish massage, pregnancy massage, and Manual Lymph Drainage.',
+  description:
+    'Professional massage services in Austin: Deep tissue massage, cupping therapy, muscle scraping (IASTM), Swedish massage, pregnancy massage, and Manual Lymph Drainage.',
 };
+
+const services = [
+  {
+    title: 'Deep Tissue Massage',
+    description:
+      'Deep tissue massage is a therapeutic technique targeting deep muscle layers with firm pressure and slow strokes. Benefits include pain relief, improved range of motion, stress reduction, and injury rehabilitation.',
+    image: { src: '~/assets/images/closeups/hands-back2.jpeg', alt: 'deep tissue massage on back' },
+    note: null,
+  },
+  {
+    title: 'Cupping Therapy',
+    description:
+      'Cupping therapy is a traditional alternative medicine practice that involves placing cups on the skin to create suction. The suction created by the cups is intended to mobilize blood flow, promote healing, and relieve muscle tension.',
+    image: { src: '~/assets/images/closeups/cupping-back.jpeg', alt: 'cupping therapy on back' },
+    note: '* Available for appointments of any length at no extra charge',
+  },
+  {
+    title: 'Muscle Scraping (IASTM)',
+    description:
+      'Instrument Assisted Soft Tissue Mobilization (IASTM) uses specialized tools to massage and manipulate soft tissues in the body. The therapist glides the tools over the skin, applying controlled pressure to address issues in muscles, fascia, and other connective tissues.',
+    image: { src: '~/assets/images/closeups/knife-back.jpeg', alt: 'muscle scraping on back' },
+    note: '* Available for appointments of any length at no extra charge',
+  },
+  {
+    title: 'Pregnancy & Postpartum Massage',
+    description:
+      'Our pregnancy and postpartum massage services are tailored to support women during and after pregnancy. This specialized massage helps relieve common discomforts such as back pain, swelling, and fatigue while promoting relaxation and overall well-being. Each session is customized to ensure comfort and care during every stage of this beautiful journey.',
+    image: { src: '~/assets/images/closeups/hands-back.jpeg', alt: 'massage hands on back' },
+    note: null,
+  },
+  {
+    title: 'Swedish Massage',
+    description:
+      'Swedish massage involves gentle, rhythmic strokes to induce relaxation, improve circulation, relieve muscle tension, enhance flexibility, and reduce stress. A classic and versatile massage technique known for its calming effects.',
+    image: { src: '~/assets/images/closeups/hands-hand.jpeg', alt: 'massage hands' },
+    note: null,
+  },
+  {
+    title: 'Manual Lymph Drainage (MLD)',
+    description:
+      'Manual Lymph Drainage (MLD) is a gentle massage technique designed to stimulate lymphatic fluid flow, promoting edema reduction, immune system support, detoxification, relaxation, and aiding post-surgical recovery. Consultation with a qualified healthcare professional or therapist is recommended for proper application.',
+    image: { src: '~/assets/images/closeups/hands-leg.jpeg', alt: 'massage hands on leg' },
+    note: null,
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <Hero2
-    title="Services"
-    subtitle="We offer a variety of services to help personalize your treatment."
+  <!-- Page header -->
+  <section class="py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-5xl md:text-6xl mb-4" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">
+        Our Services
+      </h1>
+      <p class="text-muted text-lg mb-8 leading-relaxed">
+        We offer a variety of services to help personalize your treatment.
+      </p>
+      <a
+        href="https://www.massagebook.com/therapists/restorativebodyworkatx"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2.5 bg-[#79b791] hover:bg-[#3d785c] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base"
+        style="font-family: 'Nunito', sans-serif;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Book an Appointment
+      </a>
+    </div>
+  </section>
 
-    actions={[
-{
-        variant: 'primary',
-        text: 'Book an appointment',
-        href: 'https://www.massagebook.com/therapists/restorativebodyworkatx',
-        icon: 'tabler:calendar-plus',
-      },
-    ]}
-  />
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="border-t border-[#79b791]/40"></div>
+  </div>
 
-  <Brands
-    title="Deep Tissue Massage"
-    subtitle="Deep tissue massage is a therapeutic technique targeting deep muscle layers with firm pressure and slow strokes. Benefits include pain relief, improved range of motion, stress reduction, and injury rehabilitation."
-    images={[
-      // { src: '~/assets/images/closeups/hands-back.jpeg', alt: 'Deep tissue - back' },
-      // { src: '~/assets/images/closeups/hands-back1.jpeg', alt: 'Deep tissue - back' },
-      { src: '~/assets/images/closeups/hands-back2.jpeg', alt: 'deep tissue massage on back' },
-      // { src: '~/assets/images/closeups/hands-hand.jpeg', alt: 'Deep tissue - hands' },
-      // { src: '~/assets/images/closeups/hands-leg.jpeg', alt: 'Deep tissue - legs' },
-    ]}
-  />
+  <!-- Service sections -->
+  <section class="py-16 px-4">
+    <div class="max-w-5xl mx-auto space-y-20">
+      {
+        services.map(({ title, description, image, note }, i) => (
+          <div class={`flex flex-col gap-10 items-center ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+            <!-- Image -->
+            <div class="w-full md:w-2/5 flex-shrink-0">
+              <div class="rounded-2xl overflow-hidden shadow-md" style="aspect-ratio: 4/3;">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-full object-cover object-center"
+                  width={600}
+                  height={450}
+                  widths={[400, 600, 800]}
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                  loading="eager"
+                />
+              </div>
+            </div>
+            <!-- Content -->
+            <div class="flex-1">
+              <h2
+                class="text-3xl md:text-4xl text-[#3d785c] mb-4"
+                style="font-family: 'Cormorant Garamond', serif; font-weight: 600;"
+              >
+                {title}
+              </h2>
+              <p class="leading-relaxed text-default">{description}</p>
+              {note && (
+                <p class="mt-4 text-sm text-muted italic border-l-2 border-[#79b791]/50 pl-3">{note}</p>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
-  <Brands
-    title="Cupping Therapy"
-    subtitle="Cupping therapy is a traditional alternative medicine practice that involves placing cups on the skin to create suction. The suction created by the cups is intended to mobilize blood flow, promote healing, and relieve muscle tension."
-    subSubTitle="* Available for appointments of any length at no extra charge"
-    images={[
-      { src: '~/assets/images/closeups/cupping-back.jpeg', alt: 'cupping therapy on back' },
-      // { src: '~/assets/images/closeups/cupping-back1.jpeg', alt: 'Cupping therapy - back' },
-      // { src: '~/assets/images/closeups/cupping-back2.jpeg', alt: 'Cupping therapy - back' },
-    ]}
-  />
-  <Brands
-    title="Muscle Scraping"
-    subtitle="Instrument Assisted Soft Tissue Mobilization (IASTM) is a therapeutic technique that uses specialized tools to massage and manipulate soft tissues in the body. These tools are typically made of metal or plastic and have various shapes and edges. During IASTM, the therapist glides the tools over the skin, applying controlled pressure to address issues in muscles, fascia, and other connective tissues."
-    subSubTitle="* Available for appointments of any length at no extra charge"
-    images={[
-      { src: '~/assets/images/closeups/knife-back.jpeg', alt: 'muscle scraping on back' },
-      // { src: '~/assets/images/closeups/knife-leg.jpeg', alt: 'IASTM - legs' },
-    ]}
-  />
-  <Brands
-    title="Pregnancy & Postpartum Massage"
-    subtitle="Our pregnancy and postpartum massage services are tailored to support women during and after pregnancy. This specialized massage helps relieve common discomforts such as back pain, swelling, and fatigue while promoting relaxation and overall well-being. In the postpartum period, massage aids in recovery by reducing muscle tension, improving circulation, and providing emotional support. Each session is customized to ensure comfort and care during every stage of this beautiful journey."
-    images={[
-      { src: '~/assets/images/closeups/hands-back.jpeg', alt: 'massage hands on back' },
-      // { src: '~/assets/images/closeups/hands-back1.jpeg'},
-    ]}
-  />
-  <Brands
-    title="Swedish Massage"
-    subtitle="Swedish massage involves gentle, rhythmic strokes to induce relaxation, improve circulation, relieve muscle tension, enhance flexibility, and reduce stress. It's a classic and versatile massage technique known for its calming effects."
-    images={[
-      { src: '~/assets/images/closeups/hands-hand.jpeg', alt: 'massage hands on'},
-      // { src: '~/assets/images/closeups/knife-leg.jpeg'},
-    ]}
-  />
-  <Brands
-    title="Manual Lymph Drainage (MLD)"
-    subtitle="Manual Lymph Drainage (MLD) is a gentle massage technique designed to stimulate lymphatic fluid flow, promoting edema reduction, immune system support, detoxification, relaxation, and aiding post-surgical recovery. Consultation with a qualified healthcare professional or therapist is recommended for proper application."
-    images={[
-      { src: '~/assets/images/closeups/hands-leg.jpeg', alt: 'massage hands on leg' },
-      // { src: '~/assets/images/closeups/knife-leg.jpeg'},
-    ]}
-  />
+  <!-- Bottom CTA -->
+  <section class="py-12 px-4 text-center">
+    <div class="max-w-xl mx-auto bg-white/60 border border-[#79b791]/40 rounded-2xl p-10 shadow-sm">
+      <h2 class="text-3xl md:text-4xl mb-3" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">
+        Ready to restore?
+      </h2>
+      <p class="text-muted mb-6 text-sm">Schedule your session online in minutes.</p>
+      <a
+        href="https://www.massagebook.com/therapists/restorativebodyworkatx"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2.5 bg-[#79b791] hover:bg-[#3d785c] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
+        style="font-family: 'Nunito', sans-serif;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Book an Appointment
+      </a>
+    </div>
+  </section>
 </Layout>
