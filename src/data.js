@@ -6,17 +6,10 @@ export const headerData = {
     { text: 'Book Now', href: 'https://www.massagebook.com/therapists/restorativebodyworkatx', target: '_blank' },
     { text: 'Services', href: getPermalink('/services') },
     { text: 'About', href: getPermalink('/about') },
+    { text: 'Contact', href: getPermalink('/contact') },
     { text: 'FAQ', href: getPermalink('/faq') },
-    // { text: 'Contact', href: getPermalink('/contact') },
   ],
-  actions: [
-    // {
-    //   text: 'Book now!',
-    //   href: 'https://www.massagebook.com/therapists/restorativebodyworkatx',
-    //   target: '_blank',
-    //   icon: 'tabler:calendar-plus',
-    // },
-  ],
+  actions: [],
 };
 
 export const footerData = {

@@ -1,50 +1,57 @@
 ---
-// import '@fontsource/fira-sans';
 import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 ---
-<GoogleFontsOptimizer url="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
-</GoogleFontsOptimizer>
+<GoogleFontsOptimizer url="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" />
 
 <style is:inline is:global>
   :root {
-    --aw-font-sans: 'Fira Sans';
-    --aw-font-serif: var(--aw-font-sans);
-    --aw-font-heading: var(--aw-font-sans);
+    --aw-font-sans: 'Nunito', sans-serif;
+    --aw-font-serif: 'Cormorant Garamond', serif;
+    --aw-font-heading: 'Cormorant Garamond', serif;
 
     --aw-color-primary: #79b791;
-    --aw-color-secondary: rgb(10, 10, 10);
+    --aw-color-secondary: #2d5a41;
     --aw-color-accent: rgb(109 40 217);
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
+    --aw-color-text-heading: rgb(20 30 20);
+    --aw-color-text-default: rgb(40 50 40);
+    --aw-color-text-muted: rgb(90 105 90);
     --aw-color-bg-page: #edf4ed;
-
     --aw-color-bg-page-dark: #79b791;
 
     ::selection {
-      background-color: lavender;
+      background-color: #c8e6d0;
     }
   }
 
   .dark {
-    /* --aw-font-sans: 'Inter Variable'; */
-    --aw-font-sans: 'Fira Sans';
-    --aw-font-serif: var(--aw-font-sans);
-    --aw-font-heading: var(--aw-font-sans);
+    --aw-font-sans: 'Nunito', sans-serif;
+    --aw-font-serif: 'Cormorant Garamond', serif;
+    --aw-font-heading: 'Cormorant Garamond', serif;
 
     --aw-color-primary: #3d785c;
     --aw-color-secondary: brown;
     --aw-color-accent: rgb(109 40 217);
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: black;
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
+    --aw-color-text-heading: rgb(10 20 10);
+    --aw-color-text-default: rgb(20 30 20);
+    --aw-color-text-muted: rgb(50 65 50 / 80%);
     --aw-color-bg-page: var(--aw-color-bg-page-dark);
 
     ::selection {
-      background-color: black;
-      color: snow;
+      background-color: #3d785c;
+      color: #edf4ed;
     }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
   }
 </style>

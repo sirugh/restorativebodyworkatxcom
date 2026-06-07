@@ -35,6 +35,50 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://restorativebodyworkatx.com/#business",
+      "name": "Restorative Bodywork",
+      "description": "Professional therapeutic massage services in South Austin, TX. Deep tissue, cupping therapy, muscle scraping (IASTM), Swedish massage, pregnancy massage, and Manual Lymph Drainage.",
+      "url": "https://restorativebodyworkatx.com",
+      "telephone": "+15129203103",
+      "email": "info@restorativebodyworkatx.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2111 Dickson Drive #14",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "postalCode": "78704",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.2456524,
+        "longitude": -97.7838788
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday", "Saturday"],
+          "opens": "10:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Monday",
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "priceRange": "$$",
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "USD",
+      "areaServed": { "@type": "City", "name": "Austin", "sameAs": "https://en.wikipedia.org/wiki/Austin,_Texas" },
+      "hasMap": "https://www.google.com/maps?q=2111+Dickson+Drive+%2314,+Austin,+TX+78704"
+    }
+    </script>
 
     <!-- Uncomment line below to activate View Transitions -->
     <!-- <ViewTransitions fallback="swap" /> -->
