@@ -1,0 +1,36 @@
+---
+const BOOKING_URL =
+  'https://www.massagebook.com/restorativebodyworkatx/massage/deals/New-Clients/190796?ncf_source=friendly_url&src=massagebook';
+const CUTOFF_DATE = '2026-11-30T23:59:59';
+---
+
+<div id="promo-banner" class="bg-[#3d785c] text-white px-4 py-3">
+  <div
+    class="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-center"
+  >
+    <span
+      class="text-base md:text-lg font-semibold"
+      style="font-family: 'Nunito', sans-serif;"
+    >
+      New Client Special! 20% off your First Massage
+    </span>
+    <a
+      href={BOOKING_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 bg-white text-[#3d785c] font-semibold px-4 py-1.5 rounded-full hover:bg-white/90 transition-colors duration-300 text-xs md:text-sm"
+      style="font-family: 'Nunito', sans-serif;"
+    >
+      Book now →
+    </a>
+    <span class="text-xs text-white/80" style="font-family: 'Nunito', sans-serif;">
+      Expires 12/31/2026
+    </span>
+  </div>
+</div>
+
+<script define:vars={{ cutoff: CUTOFF_DATE }}>
+  if (new Date() >= new Date(cutoff)) {
+    document.getElementById('promo-banner')?.remove();
+  }
+</script>

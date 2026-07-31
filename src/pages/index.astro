@@ -6,14 +6,14 @@ import Image from '~/components/common/Image.astro';
 const metadata = {
   title: 'Restorative Bodywork - Therapeutic Massage in Austin, TX',
   description:
-    'Professional therapeutic massage services in South Austin. Deep tissue, cupping, muscle scraping, Swedish massage, and Manual Lymph Drainage. Book your appointment today.',
+    'Professional therapeutic massage services in South Austin. Deep tissue, cupping, and muscle scraping. Book your appointment today.',
   ignoreTitleTemplate: true,
 };
 
 const rates = [
-  { duration: '60 min', price: '$120' },
-  { duration: '75 min', price: '$150' },
-  { duration: '90 min', price: '$180' },
+  { duration: '60 min', price: '$135' },
+  { duration: '75 min', price: '$165' },
+  { duration: '90 min', price: '$195' },
 ];
 ---
 
@@ -72,6 +72,7 @@ const rates = [
               src="~/assets/images/rose_headshot.jpeg"
               alt="Rose - Licensed Massage Therapist"
               class="w-full h-full object-cover object-top"
+              style="transform: scale(1.4); transform-origin: 40% 28%;"
               width={144}
               height={144}
             />
@@ -93,7 +94,7 @@ const rates = [
           class="group bg-white/60 border border-[#79b791]/40 rounded-2xl p-8 hover:bg-[#79b791]/15 hover:border-[#3d785c]/60 transition-all duration-300 shadow-sm hover:shadow-md"
         >
           <h3 class="text-2xl text-[#3d785c] mb-5" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">
-            Contact &amp; Hours
+            Contact
           </h3>
           <div class="space-y-3 text-sm">
             <div class="flex items-center gap-3">
@@ -106,20 +107,14 @@ const rates = [
               <svg class="w-4 h-4 text-[#79b791] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span>info@restorativebodyworkatx.com</span>
+              <span>rose@restorativebodyworkatx.com</span>
             </div>
             <div class="flex items-start gap-3">
               <svg class="w-4 h-4 mt-0.5 text-[#79b791] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span>2111 Dickson Dr #14, Austin, TX 78704</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-4 h-4 mt-0.5 text-[#79b791] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span class="text-muted leading-relaxed">Sun &amp; Sat: 10am – 5pm &nbsp;·&nbsp; Mon: 10am – 7pm<br />Tue – Fri: Closed</span>
+              <span>2111 Dickson Dr. Suite #14, Austin, TX 78704</span>
             </div>
           </div>
           <span

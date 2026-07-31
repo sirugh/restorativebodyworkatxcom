@@ -53,11 +53,12 @@
 } */
 
 #header.expanded nav {
-  position: fixed;
-  top: 70px;
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  bottom: 70px !important;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
   padding: 0 5px;
 }
 

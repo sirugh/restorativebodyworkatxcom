@@ -115,6 +115,6 @@ export const faqData = [
   },
   {
     title: "In-Home Massage",
-    description: "We offer In-Home massage on a limited basis. For rates and other info, please email us at <a href='mailto:info@restorativebodyworkatx.com'>info@restorativebodyworkatx.com</a>"
+    description: "We offer In-Home massage on a limited basis. For rates and other info, please email us at <a href='mailto:rose@restorativebodyworkatx.com'>rose@restorativebodyworkatx.com</a>"
   }
 ]
