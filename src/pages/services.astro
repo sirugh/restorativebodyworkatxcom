@@ -3,18 +3,32 @@ import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
 
 const metadata = {
-  title: 'Massage Services - Deep Tissue, Cupping, Muscle Scraping in Austin',
+  title: 'Massage Services - Sports, Pregnancy, Cupping & More in Austin',
   description:
-    'Professional massage services in Austin: Deep tissue massage, cupping therapy, muscle scraping (IASTM), Swedish massage, pregnancy massage, and Manual Lymph Drainage.',
+    'Professional massage services in Austin: sports massage, pregnancy massage, face & scalp massage, cupping therapy, and muscle scraping.',
 };
 
 const services = [
   {
-    title: 'Deep Tissue Massage',
+    title: 'Sports Massage',
     description:
-      'Deep tissue massage is a therapeutic technique targeting deep muscle layers with firm pressure and slow strokes. Benefits include pain relief, improved range of motion, stress reduction, and injury rehabilitation.',
-    image: { src: '~/assets/images/closeups/hands-back2.jpeg', alt: 'deep tissue massage on back' },
+      'Sports massage is similar to manual therapy at a physical therapy or chiropractic office, focusing on movement, pain relief, and recovery. Techniques may include stretching, mobilization, trigger point therapy, muscle scrapping, and dynamic cupping. Please wear athletic or comfortable clothing that is easy to move in. Best suited for clients wanting to focus on one or two specific areas.',
+    image: { src: '~/assets/images/closeups/hands-leg.jpeg', alt: 'sports massage on leg' },
     note: null,
+  },
+  {
+    title: 'Pregnancy Massage',
+    description:
+      'A customized treatment designed to comfort and support you through each trimester. This massage focuses on easing the unique discomforts of pregnancy, including lower back pain, leg swelling, and fatigue, while promoting deep relaxation and overall well-being. Let this be a moment to feel centered and cared for, as your body embraces these beautiful changes.',
+    image: { src: '~/assets/images/closeups/hands-back.jpeg', alt: 'pregnancy massage on back' },
+    note: null,
+  },
+  {
+    title: 'Face & Scalp Massage',
+    description:
+      'Melt away tension and reconnect with a moment of calm. This soothing treatment combines relaxing facial massage, scalp massage, gua sha, and cupping to ease tightness, calm the nervous system, and leave your skin with a natural, healthy glow — an hour dedicated to slowing down and letting go.',
+    image: { src: '~/assets/images/closeups/hands-hand.jpeg', alt: 'face and scalp massage' },
+    note: '*Add Buccal Intraoral $15',
   },
   {
     title: 'Cupping Therapy',
@@ -24,32 +38,11 @@ const services = [
     note: '* Available for appointments of any length at no extra charge',
   },
   {
-    title: 'Muscle Scraping (IASTM)',
+    title: 'Muscle Scraping',
     description:
       'Instrument Assisted Soft Tissue Mobilization (IASTM) uses specialized tools to massage and manipulate soft tissues in the body. The therapist glides the tools over the skin, applying controlled pressure to address issues in muscles, fascia, and other connective tissues.',
     image: { src: '~/assets/images/closeups/knife-back.jpeg', alt: 'muscle scraping on back' },
     note: '* Available for appointments of any length at no extra charge',
-  },
-  {
-    title: 'Pregnancy & Postpartum Massage',
-    description:
-      'Our pregnancy and postpartum massage services are tailored to support women during and after pregnancy. This specialized massage helps relieve common discomforts such as back pain, swelling, and fatigue while promoting relaxation and overall well-being. Each session is customized to ensure comfort and care during every stage of this beautiful journey.',
-    image: { src: '~/assets/images/closeups/hands-back.jpeg', alt: 'massage hands on back' },
-    note: null,
-  },
-  {
-    title: 'Swedish Massage',
-    description:
-      'Swedish massage involves gentle, rhythmic strokes to induce relaxation, improve circulation, relieve muscle tension, enhance flexibility, and reduce stress. A classic and versatile massage technique known for its calming effects.',
-    image: { src: '~/assets/images/closeups/hands-hand.jpeg', alt: 'massage hands' },
-    note: null,
-  },
-  {
-    title: 'Manual Lymph Drainage (MLD)',
-    description:
-      'Manual Lymph Drainage (MLD) is a gentle massage technique designed to stimulate lymphatic fluid flow, promoting edema reduction, immune system support, detoxification, relaxation, and aiding post-surgical recovery. Consultation with a qualified healthcare professional or therapist is recommended for proper application.',
-    image: { src: '~/assets/images/closeups/hands-leg.jpeg', alt: 'massage hands on leg' },
-    note: null,
   },
 ];
 ---
@@ -61,8 +54,15 @@ const services = [
       <h1 class="text-5xl md:text-6xl mb-4" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">
         Our Services
       </h1>
+      <h2 class="text-2xl md:text-3xl text-[#3d785c] mb-4" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">
+        Therapeutic Massage
+      </h2>
       <p class="text-muted text-lg mb-8 leading-relaxed">
-        We offer a variety of services to help personalize your treatment.
+        Everybody is different, and every session reflects that. Using a blend of deep tissue, sports
+        massage, myofascial release, and relaxation techniques, each session is thoughtfully designed
+        around what your body needs that day. Whether you're managing chronic pain, recovering from
+        physical activity, or simply carrying the weight of everyday stress, the focus is always on
+        helping you feel better, move freely, and get back to doing the things you love most.
       </p>
       <a
         href="https://www.massagebook.com/therapists/restorativebodyworkatx"

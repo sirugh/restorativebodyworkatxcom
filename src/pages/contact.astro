@@ -2,20 +2,10 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Contact Us - Restorative Bodywork Austin Location & Hours',
+  title: 'Contact Us - Restorative Bodywork Austin Location',
   description:
-    'Contact Restorative Bodywork in South Austin. Located at 2111 Dickson Dr #14. Call (512) 920-3103 or book online. Hours: Sunday & Saturday 10am-5pm, Monday 10am-7pm.',
+    'Contact Restorative Bodywork in South Austin. Located at 2111 Dickson Dr. Suite #14. Call (512) 920-3103 or book online.',
 };
-
-const hours = [
-  { day: 'Sunday', time: '10am – 5pm', open: true },
-  { day: 'Monday', time: '10am – 7pm', open: true },
-  { day: 'Tuesday', time: 'Closed', open: false },
-  { day: 'Wednesday', time: 'Closed', open: false },
-  { day: 'Thursday', time: 'Closed', open: false },
-  { day: 'Friday', time: 'Closed', open: false },
-  { day: 'Saturday', time: '10am – 5pm', open: true },
-];
 ---
 
 <Layout metadata={metadata}>
@@ -28,7 +18,7 @@ const hours = [
         <p class="text-muted text-xs uppercase tracking-[0.2em]">By appointment only</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="max-w-md mx-auto">
         <!-- Contact info -->
         <div class="bg-white/60 border border-[#79b791]/40 rounded-2xl p-8 shadow-sm">
           <h2
@@ -53,7 +43,7 @@ const hours = [
             </a>
 
             <a
-              href="mailto:info@restorativebodyworkatx.com"
+              href="mailto:rose@restorativebodyworkatx.com"
               class="flex items-center gap-4 text-default hover:text-[#3d785c] transition-colors group"
             >
               <div
@@ -63,11 +53,11 @@ const hours = [
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <span class="text-sm">info@restorativebodyworkatx.com</span>
+              <span class="text-sm">rose@restorativebodyworkatx.com</span>
             </a>
 
             <a
-              href="https://www.google.com/maps?q=2111+Dickson+Drive+%2314,+Austin,+TX+78704"
+              href="https://www.google.com/maps?q=2111+Dickson+Dr.+Suite+%2314,+Austin,+TX+78704"
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-start gap-4 text-default hover:text-[#3d785c] transition-colors group"
@@ -80,7 +70,7 @@ const hours = [
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <span class="text-sm leading-relaxed">2111 Dickson Drive #14<br />Austin, TX 78704</span>
+              <span class="text-sm leading-relaxed">2111 Dickson Dr. Suite #14<br />Austin, TX 78704</span>
             </a>
           </div>
 
@@ -97,33 +87,6 @@ const hours = [
               </svg>
               Book an Appointment
             </a>
-          </div>
-        </div>
-
-        <!-- Hours -->
-        <div class="bg-white/60 border border-[#79b791]/40 rounded-2xl p-8 shadow-sm">
-          <h2
-            class="text-2xl text-[#3d785c] mb-2"
-            style="font-family: 'Cormorant Garamond', serif; font-weight: 600;"
-          >
-            Hours
-          </h2>
-          <p class="text-xs text-muted italic mb-6">By appointment only</p>
-          <div class="space-y-0">
-            {
-              hours.map(({ day, time, open }) => (
-                <div
-                  class={`flex justify-between items-center py-2.5 border-b border-[#79b791]/20 last:border-0 ${!open ? 'opacity-45' : ''}`}
-                >
-                  <span class="text-sm font-medium">{day}</span>
-                  <span
-                    class={`text-sm ${open ? 'text-[#3d785c] font-semibold' : 'text-muted'}`}
-                  >
-                    {time}
-                  </span>
-                </div>
-              ))
-            }
           </div>
         </div>
       </div>
